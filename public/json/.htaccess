@@ -1,0 +1,7 @@
+<FilesMatch "\.(json)$">
+	<IfModule mod_headers.c>
+		Header set Access-Control-Allow-Origin "*"
+		Header set Access-Control-Allow-Headers "Origin, Content-Type, X-Auth-Token, Authorization, x-csrf-token"
+		Header set Cache-Control "max-age=31536000, public"
+	</IfModule>
+</FilesMatch>
