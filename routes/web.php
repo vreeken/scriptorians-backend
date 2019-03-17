@@ -15,15 +15,18 @@ Route::prefix('api')->group(function () {
 	Route::post('auth/register', 							'AuthController@postRegister');
 	Route::get('auth/logout',								'AuthController@getLogout');
 
-	Route::post('comments/get', 						'CommentController@getComments');
+	Route::post('comments/get', 						'ScriptureController@getComments');
 
 
 	// auth.both is custom middleware that checks for either jwt OR session based login. I don't think we'll be using jwt, though
 	Route::group(['middleware' => 'auth.both'], function () {
 		Route::get('account-data',						'UserController@getAccountData');
 
-		Route::post('comments/new',						'CommentController@postComment');
-		Route::post('comments/vote',					'CommentController@vote');
+		Route::post('comments/new',						'ScriptureController@postComment');
+		Route::post('comments/vote',					'ScriptureController@vote');
+
+		Route::post('favorite-verses/add',					'ScriptureController@addFavoriteVerse');
+		Route::post('favorite-verses/remove',				'ScriptureController@removeFavoriteVerse');
 	});
 });
 

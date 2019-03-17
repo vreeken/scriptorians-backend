@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Traits\UserAndOptionsUtils;
+
 
 use App\CommentVote;
 
@@ -28,18 +28,7 @@ class Comment extends Model {
 	}
 	*/
 
-	public static function getCommentsForChapter(Request $request) {
-		if (!$request->has('volume') || !$request->has('book') || !$request->has('chapter')) {
-			return response()->json(['error'=>'invalid_parameters'], 400);
-		}
-
-		$volume = (int) $request->input('volume');
-		$book = (int) $request->input('book');
-		$chapter = (int) $request->input('chapter');
-
-		//$comments = Comment::with('user')->withCount('votes')->where('volume_id', $v)->where('book_id', $b)->where('chapter_id', $c)->toSql();
-		$user=self::getUser();
-
+	public static function getCommentsForChapter($volume, $book, $chapter, $user=null) {
 		if ($user) {
 			$RAW_VOTED_QUERY = '(SELECT count(*) FROM comment_votes WHERE comment_votes.comment_id=comments.id AND comment_votes.user_id=' . (int) $user->id . ' AND comment_votes.vote=1) AS voted';
 		}
@@ -60,7 +49,7 @@ class Comment extends Model {
 			->whereNull('comments.deleted_at')
 			->get();
 
-		return response()->json(['success'=>true, 'comments'=>$comments]);
+		return $comments;
 	}
 
 	public static function postComment(Request $request) {
