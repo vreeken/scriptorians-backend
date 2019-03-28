@@ -6,6 +6,8 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\FavoriteVerse;
+
 class User extends Authenticatable implements JWTSubject
 {
 		use Notifiable;
@@ -68,7 +70,7 @@ class User extends Authenticatable implements JWTSubject
 				return true;
 			}
 
-			$fave = new App\FavoriteVerse(['volume_id'=>$volume, 'book_id'=>$book, 'chapter_id'=>$chapter, 'verse_id'=>$verse]);
+			$fave = new FavoriteVerse(['volume_id'=>$volume, 'book_id'=>$book, 'chapter_id'=>$chapter, 'verse_id'=>$verse]);
 			if ($this->favoriteVerses()->save($fave)) {
 				return true;
 			}

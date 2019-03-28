@@ -11,6 +11,8 @@ use App\CommentVote;
 use DB;
 use Log;
 
+use App\traits\UserAndOptionsUtils;
+
 class Comment extends Model {
 
 	use UserAndOptionsUtils;
