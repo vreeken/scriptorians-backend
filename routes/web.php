@@ -15,7 +15,7 @@ Route::prefix('api')->group(function () {
 	Route::post('auth/register', 							'AuthController@postRegister');
 	Route::get('auth/logout',								'AuthController@getLogout');
 
-	Route::post('comments/get', 						'ScriptureController@getComments');
+	Route::post('chapter-data', 						'ScriptureController@getChapterData');
 
 
 	// auth.both is custom middleware that checks for either jwt OR session based login. I don't think we'll be using jwt, though
