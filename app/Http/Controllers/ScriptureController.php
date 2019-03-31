@@ -8,7 +8,7 @@ use App\User;
 use App\Comment;
 use DB;
 use App\Traits\UserAndOptionsUtils;
-use App\FavoriteVerse;
+//use App\FavoriteVerse;
 
 class ScriptureController extends Controller {
 
