@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Favorite extends Model
-{
-    //
+class FavoriteVerse extends Model {
+    public function user() {
+    	$this->belongsTo('App\User');
+    }
 }
